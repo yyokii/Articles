@@ -6,6 +6,8 @@ topics: [ios, swift, ポエム, キャリア, 人生]
 published: false
 ---
 
+（これは[エンジニアと人生 Advent Calendar 2021](https://adventar.org/calendars/6444)の12日目の記事です。）
+
 とある28歳のiOSアプリエンジニアです。
 
 社会人も気付けば5年目に入り、20台も後半に差し掛かりました。
