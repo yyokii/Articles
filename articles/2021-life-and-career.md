@@ -3,7 +3,7 @@ title: "もう少しiOS/Swiftと向き合おうと思う　〜とある28歳エ�
 emoji: "🗺"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: [ios, swift, ポエム, キャリア, 人生]
-published: false
+published: true
 ---
 
 （これは[エンジニアと人生 Advent Calendar 2021](https://adventar.org/calendars/6444)の12日目の記事です。）
@@ -174,11 +174,9 @@ iOSアプリエンジニアとして仕事しているとAndroidアプリエン�
 
 👋
 
-
-
 ---
 
-iOSエンジニアを探している方へ
+To iOSエンジニアを探している方
 
 * 週1~2日ぐらいであれば副業で稼働できる余地があります
 * カジュアルに話してみたい方がいましたらDM等でご連絡下さい
