@@ -58,7 +58,7 @@ let futureResult = try await someMethodThatReturnsAFuture().get()
 
 [Vapor: Basics → Async](https://docs.vapor.codes/4.0/async/)
 
-ということでConcurrencyのキャッチアップとしてVaporで試してみるのも良さそうです。
+ConcurrencyのキャッチアップとしてVaporで試してみるのも良さそうですね。
 また、iOSアプリ開発などでConcurrencyを使っている人はその知識をそのまま利用できて良いですね。
 
 ### スケジューリング
