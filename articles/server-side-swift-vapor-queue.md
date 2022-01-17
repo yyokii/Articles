@@ -68,7 +68,7 @@ ConcurrencyのキャッチアップとしてVaporで試してみるのも良さ�
 
 `ScheduledJob` もしくは `AsyncScheduledJob `に準拠したものをつくり、それを登録することでジョブのスケジューリングができます。
 
-名前からわかるように`AsyncScheduledJob `は `Concurrenc`機能に対応しています。
+名前からわかるように`AsyncScheduledJob `は `Concurrency`機能に対応しています。
 
 例えば今回のコンテンツの生成とgithubの更新ジョブは、次のように記述しています。
 
