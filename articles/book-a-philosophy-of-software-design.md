@@ -68,8 +68,9 @@ Deep Moduleによる複雑さの隠蔽
 ![chapter13](/images/APOSD-013.png)
 
 ### Chapter 14
-![chapter14](/images/APOSD-014.png)
+
 良い命名
+![chapter14](/images/APOSD-014.png)
 
 ### Chapter 15
 先にコメント書く
