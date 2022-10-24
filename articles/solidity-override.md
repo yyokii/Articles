@@ -8,7 +8,7 @@ published: true
 
 ## 問題
 
-OpenZeppelinなどを利用して開発している際に、コントラクトにおいて複数のインターフェイスを継承する場合に、そのインターフェイスが同じfunctionを保持している場合、下記エラーが生じます。
+OpenZeppelinなどを利用して開発している際に、コントラクトにおいて多重継承を行い且つ継承元が同じfunctionを定義している場合、下記エラーが生じます。
 
 `Derived contract must override function {function名}. Two or more base classes define function with same name and parameter types.`
 
