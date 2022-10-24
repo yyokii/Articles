@@ -1,5 +1,5 @@
 ---
-title: "[Solidity] エラー: Derived contract must override function ~. Two or more base classes define function with same name and parameter types. とDiamond problemについて"
+title: "[Solidity] Derived contract must override function ~ エラーと菱形継承問題"
 emoji: "💎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [solidity]
