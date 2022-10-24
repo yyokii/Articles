@@ -64,7 +64,8 @@ ERC721URIStorage, ERC721EnumerableでERC721のfunctionがoverrideされている
 
 [Inheritance | Solidity by Example | 0.8.13](https://solidity-by-example.org/inheritance/)
 
-以上より`contract DemoNFT is ERC721URIStorage, ERC721Enumerable { ~`とした場合の解決順序はDemoNFT→ERC721Enumerable→ERC721URIStorage→ERC721
+以上より`contract DemoNFT is ERC721URIStorage, ERC721Enumerable { ~`とした場合の解決順序は
+DemoNFT→ERC721Enumerable→ERC721URIStorage→ERC721
 となり呼び出し順序が一意に決定します。
 
 また、C3 Linearizationを利用しているため`super`を利用した呼び出しが、親ではなく兄弟関係にあるコンストラクトへの呼び出しになることがあります。
