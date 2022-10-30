@@ -3,7 +3,7 @@ title: "[Next.js(Typescript)] プロジェクト作成とLinter,Formatterの基�
 emoji: "👷‍♀️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [typescript, nextjs, prettier]
-published: false
+published: true
 ---
 
 Next.jsのプロジェクトを作成し、Linter,Formatterの設定をVSCodeで行う際の手順です。
