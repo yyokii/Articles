@@ -1,5 +1,5 @@
 ---
-title: "[Next.js(Typescript)] プロジェクト作成とLinter,Formatterの設定"
+title: "[Next.js(Typescript)] プロジェクト作成とLinter,Formatterの基本設定"
 emoji: "👷‍♀️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [typescript, nextjs, prettier]
@@ -12,24 +12,29 @@ Next.jsのプロジェクトを作成し、Linter,Formatterの設定をVSCodeで
 
 ### 作成
 
-`yarn create next-app {app-name}`
-
-` cd {app-name}`
-
-`yarn dev` 
+```sh
+yarn create next-app {app-name}
+cd {app-name}
+yarn dev
+```
 
 正常に動けば（= ローカル環境で初期ページが表示されれば）OK
 
 ### Typescriptを導入
 
-`touch tsconfig.json`
+```sh
+touch tsconfig.json
+yarn add -D typescript @types/react @types/node
+```
 
-`yarn add -D typescript @types/react @types/node`
+デフォルトで作成されているjsファイルの拡張子を変更する
 
 pages/\_app.js → pages/\_app.tsx へ変更
 pages/index.js → pages/index.tsx へ変更
 
-`yarn dev`
+```sh
+yarn dev
+```
 
 正常に動けば（= ローカル環境で初期ページが表示されれば）OK
 
@@ -37,7 +42,9 @@ pages/index.js → pages/index.tsx へ変更
 
 prettierのインストール
 
-`yarn add -D prettier eslint-config-prettier`
+```sh
+yarn add -D prettier eslint-config-prettier
+```
 
 .eslintrc.jsonのextendに”prettier”を追加しprettierのルールを最優先とする
 [prettier/eslint-config-prettier: Turns off all rules that are unnecessary or might conflict with Prettier.](https://github.com/prettier/eslint-config-prettier)
@@ -85,7 +92,7 @@ settings.jsonに設定を追加し、保存時にフォーマットが適用さ�
 }
 ```
 
-以上でTypescriptを用いて保存時に自動フォーマットされるプロジェクトが作成できます。
+以上で、保存時に自動フォーマットされるプロジェクトが作成できていると思います。
 
 ## 参考
 
