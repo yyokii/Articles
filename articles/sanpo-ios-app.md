@@ -12,6 +12,8 @@ published: false
 
 ![sanpo app](/images/sanpo-app.png)
 
+[ソースコードはこちら](https://github.com/yyokii/Sanpo)
+
 開発目的は主に以下です。
 
 * iOS16のロック画面のウィジェットを使ってみたかった
