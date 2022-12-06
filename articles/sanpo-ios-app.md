@@ -6,6 +6,10 @@ topics: [ios, swift, swiftUI, ios16]
 published: false
 ---
 
+:::message 
+これは [ZOZO Advent Calendar 2022](https://qiita.com/advent-calendar/2022/zozo) カレンダー Vol.1 の 7 日目の記事です。
+:::
+
 ## 何をつくったか
 
 シンプルな歩数計アプリを作ってみました。
@@ -164,3 +168,4 @@ ViewとModel（Entityとロジックをもつもの）のレイヤーを持つ�
 SwiftUIの登場から数年が経ちますが、Swiftの言語機能の進化に加えて毎年OSの更新があり常に考えることが絶えませんね。そんな訳でついインプットが多くなりがちですが、「触ってみる」ことが「使う」ためには近道です。
 
 シンプルなアプリですが、それを再認識できて良かったです。
+誰かの参考になれば幸いです。
