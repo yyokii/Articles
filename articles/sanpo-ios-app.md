@@ -3,7 +3,7 @@ title: "[iOS] iOS16機能の素振りでシンプル歩数計アプリをつく�
 emoji: "🚶‍♀️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [ios, swift, swiftUI, ios16]
-published: false
+published: true
 ---
 
 :::message 
