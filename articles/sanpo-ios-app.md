@@ -12,7 +12,8 @@ published: false
 
 ![sanpo app](/images/sanpo-app.png)
 
-[ソースコードはこちら](https://github.com/yyokii/Sanpo)
+ソースコードはこちら
+https://github.com/yyokii/Sanpo
 
 開発目的は主に以下です。
 
@@ -155,6 +156,8 @@ ViewとModel（Entityとロジックをもつもの）のレイヤーを持つ�
 * 状態管理などのライフサイクルが必要となる場合は `~Data`という命名のclassを作成しています。
 
 [Stop using MVVM for SwiftUI | Apple Developer Forums](https://developer.apple.com/forums/thread/699003?page=1) での議論を読みその簡易な実践の意味もあり、MVの設計としています。
+そこでの議論ではSwiftの機能を利用し設計をシンプルに保つことを重要視していますが、それは「A Philosophy of Software Design」での内容と通じることが多いように思いました。
+[「A Philosophy of Software Design」のまとめと感想](https://zenn.dev/yyokii/articles/book-a-philosophy-of-software-design)
 
 ## おわりに
 
