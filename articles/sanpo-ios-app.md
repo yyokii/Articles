@@ -1,5 +1,5 @@
 ---
-title: "[iOS] iOS16機能の素振りでシンプル歩数計アプリをつくった"
+title: "[iOS] iOS16機能の素振りでシンプルな歩数計アプリをつくった"
 emoji: "🚶‍♀️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [ios, swift, swiftUI, ios16]
