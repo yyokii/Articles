@@ -134,8 +134,7 @@ func weatherDataRow(
 ```
 
 データ取得とその表示についてはAppleのサンプルコードもあり、そちらを参考にしています。
-
-Fetching weather forecasts with WeatherKit | Apple Developer Documentation](https://developer.apple.com/documentation/weatherkit/fetching_weather_forecasts_with_weatherkit)
+[Fetching weather forecasts with WeatherKit | Apple Developer Documentation](https://developer.apple.com/documentation/weatherkit/fetching_weather_forecasts_with_weatherkit)
 
 また、WeatherKitを利用する場合は「Apple Weatherの商標」と、「[データソース](https://weatherkit.apple.com/legal-attribution.html)への法的リンク」の表示が必要です。
 
