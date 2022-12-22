@@ -129,7 +129,7 @@ Picker("", selection: viewStore.binding(\.$intervalTime)) {
 ### Firebase Client
 
 Firebaseの簡易なClientを作成しEffectを受け取れるようにしました。
-Firebaseのオフラインでも、オンライン復帰時に同期してくれるので、保存処理は同期処理として`Effect<None, Never>`を返却しています。
+オフライン状態が発生してもオンライン復帰時に同期してくれるので、保存処理は同期処理として`Effect<None, Never>`を返却しています。
 
 ```swift
 public struct FirebaseAPIClient {
