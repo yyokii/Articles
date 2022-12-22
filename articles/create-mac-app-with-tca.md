@@ -3,10 +3,16 @@ title: "[Mac App] TCAを使ってシンプルなMacアプリを作成してみ�
 emoji: "🍅"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [ios, swift, tca, mac]
-published: false
+published: true
 ---
 
+:::message 
+これは [ZOZO Advent Calendar 2022](https://qiita.com/advent-calendar/2022/zozo) カレンダー Vol.1 の 23 日目の記事です。
+:::
+
 ## 何をつくったか
+
+![pomodoro app](/images/pomodoro-mac-app.png)
 
 TCA, SwiftUI, Firebaseを利用してシンプルなポモドーロタイマーアプリを作成しました。
 機能としては以下があります。
