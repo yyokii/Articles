@@ -61,7 +61,7 @@ UIViewControllerやUIViewなどにも付与されている。
 
 * MainActorなもののサブクラスは自動でMainActorとなる
 * MainAcor宣言であるメソッドのオーバーライドは自動でMainActorなメソッドとなる
-* property wrapperにおいてwrapped valueにMainActorを付与しているものを利用するclassやstructは自動でMainActorとなる
+* property wrapperにおいてwrapped valueにMainActorを付与しているもの（@ObservedObjectや@StateObject）を利用するclassやstructは自動でMainActorとなる
 * ProtocolのメソッドがMainActorである場合、その実現メソッドは自動でMainActorとなる
   * が、Protocol準拠とは別で（例えばextensionを別途作成した場合）はMainActorにはならない
 * Protocol自体がMainActorである場合、それに準拠したものは自動でMainActorとなる（メソッドも含む）。
@@ -88,8 +88,86 @@ https://github.com/apple/swift-evolution/blob/main/proposals/0306-actors.md#cros
 
 ## Async/Await
 
+非同期処理を作成/使用する際のキーワード
 
+await（= suspend）することどスレッドをブロックせず他の処理実行を可能にする
+（awaitであるからといって必ずsuspendするかは分からず、その可能性があるというだけ）
+
+computed propertyもasyncにすることが可能（getのみ）
+
+suspend状態から戻った時に必ずしも以前と同じスレッドで処理が実行されるとは限らない
 
 ## Unstructured Concurrency
 
-## Unstructured Concurrency
+async/awaitだけでは逐次実行されるだけで並行処理は実現できない。
+
+📝 https://github.com/apple/swift-evolution/blob/main/proposals/0304-structured-concurrency.md#motivation この例も同じこと言ってるはず↑
+
+並行処理をするために、TaskとTask groupを用いる。
+
+> A unit of asynchronous work.
+
+https://developer.apple.com/documentation/swift/task
+
+即時実行される。
+
+### Task.init vs Task.detached
+
+> First off, `Task.detached` most of the time should not be used at all, because it does *not* propagate task priority, task-local values or the execution context of the caller. Not only that but a detached task is inherently not *structured* and thus may out-live its defining scope.
+
+|               | Priority | Task local value     | Actor context        |
+| ------------- | -------- | -------------------- | -------------------- |
+| Task          | 引き継ぐ | 引き継ぐ             | 引き継ぐ             |
+| Task.detached | 0        | なし（引き継がない） | なし（引き継がない） |
+
+Actor contextの例
+
+```swift
+actor Demo {
+    func doWork() {
+        Task.detached {
+            if await self.validate() {　// detachedにしているので同じActor内の処理についてawaitが必要
+                // do something
+            }
+        }
+    }
+
+    func validate() -> Bool {
+        return true
+    }
+}
+```
+
+* 優先度
+  * high: .userInitiatedと同義
+  * medium: nilを設定するとこれになる
+    * https://stackoverflow.com/a/73513116/9015472
+  * low: .utilityと同義
+
+### Taskから結果を取得
+
+```swift
+func demo() async {
+    let doTask = Task { () -> String in
+        return "hi"
+    }
+
+    let result = await doTask.result
+
+    do {
+        let data = try result.get()
+    } catch {
+        print(error)
+    }
+}
+```
+
+https://developer.apple.com/documentation/swift/task/result
+
+ ## Structured Concurrency
+
+
+
+
+
+https://www.wwdcnotes.com/notes/wwdc21/10134/
