@@ -1,18 +1,12 @@
 ---
-title: "[Swift] Swift Conccurenyをざっくりと"
-emoji: ""
+title: "[Swift] Swift Conccurenyをざっと"
+emoji: "⛵️"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
+topics: [ios, swift]
 published: false
 ---
 
-ざっと雑に書いて、改めて記事等を見て付け加える感じが良さそう
-
----
-
 Swift Concurrencyで出てくるキーワードについてのまとめです。
-
-## 全体感
 
 ## Actor
 
@@ -168,10 +162,6 @@ UIViewControllerやUIViewなどにも付与されています。
 関数がすでにMainActorで実行されている場合、`await MainActor.run()`を使用すると、次の実行ループを待たずにすぐにコードが実行されますが、`Task { @MainActor in ~ `使用*すると、*次の実行ループを待つことになります。
 
 [参考: How to use @MainActor to run code on the main queue - a free Swift Concurrency by Example tutorial](https://www.hackingwithswift.com/quick-start/concurrency/how-to-use-mainactor-to-run-code-on-the-main-queue)
-
-### MainActorブロッキング
-
-？？
 
 ### inference work
 
@@ -402,6 +392,8 @@ group.addTask {
 
 ## SwiftUIとSwift Concurrency
 
+### Task
+
 SwiftUIの`.task()`modifierを使用してタスクを実行できます。
 この場合ビューが消えるときにそのタスクは自動的にキャンセルされます。
 
@@ -412,31 +404,17 @@ SwiftUIの`.task()`modifierを使用してタスクを実行できます。
 
 https://developer.apple.com/documentation/swiftui/view/task(id:priority:_:)
 
+### Tips
 
+`@State`プロパティのラッパーは、どのスレッドでもその値を変更できるように特別に記述されています。
 
+```swift
+/// You can safely mutate state properties from any thread.
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+@frozen @propertyWrapper public struct State<Value> : DynamicProperty {
+```
 
+## おわりに
 
-----
+誰かの参考になれば幸いです。
 
-* 例えば、`data(from:delegate:)`などは自動的にキャンセル処理を行わないが、なぜそうしているのだろうか？ Task.checkCancellation() を流すという考えもありそうだが？
-  * キャンセル処理を自動化すると、APIの動作が予測しづらくなる可能性があるため、利用者にキャンセル処理を任せる方が良い。
-  * キャンセル処理はアプリケーションのコンテキストに合わせて様々な方法で行われるため、API側でキャンセル処理を自動化しない方がベター。
-  * キャンセル処理を自動化する場合、キャンセルリクエストが受け取られた時点で、その処理に関するすべてのリソースを解放する必要があるため、処理が完了するまで待たなければならず、即座にキャンセル処理を行うことができない場合がある。
-
-* `@State`プロパティのラッパーは、どのスレッドでもその値を変更できるように特別に記述されています。
-
-* `withCheckedContinuation`, `withCheckedThrowingContinuation`による変換
-  * `CheckedContinuation<T, E> where E : Error`を利用してdelegateパターンにも対応可能
-  * resume()メソッドを呼ぶ
-
-
-
-https://swiftsenpai.com/swift/actor-reentrancy-problem/
-
-
-
-（📝  wwdcの動画見た方がいいかも、協調スレッドプール、actor hoppingについて）
-
-
-
-https://www.wwdcnotes.com/notes/wwdc21/10134/
