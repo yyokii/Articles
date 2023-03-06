@@ -6,7 +6,7 @@ topics: [ios, swift]
 published: false
 ---
 
-Swift Concurrencyで出てくるキーワードについてのまとめです。
+Swift Concurrencyで出てくるキーワードについて調べたもののまとめです。
 
 ## Actor
 
@@ -166,6 +166,7 @@ UIViewControllerやUIViewなどにも付与されています。
 ### inference work
 
 明示的にMainActorや`nonisolated`を宣言していなくても推論が働きます。
+それには以下のルールがあります。
 
 * MainActorなもののサブクラスは自動でMainActorとなる
 * MainAcor宣言であるメソッドのオーバーライドは自動でMainActorなメソッドとなる
@@ -179,8 +180,10 @@ UIViewControllerやUIViewなどにも付与されています。
 
 ## Sendable
 
-データ競合が生じない（スレッドセーフである）ことをコンパイル時に保証するマーカープロトコル。
-同期処理が必要ない、ということを明示できます。
+Actorがあることでデータ競合を防ぐことができますが、ActorやTaskにデータを渡すときにデータ競合が起きないことは保証されません。
+そのような場合にデータ競合が起きないことをコンパイル時に保証できるのがSendableです。
+
+つまり、Sendableはデータ競合が生じない（スレッドセーフである）ことをコンパイル時に保証するマーカープロトコルです。同期処理が必要ない、ということを明示できます。
 
 > Values of types that conform to the `Sendable` protocol are safe to share across concurrently-executing code.
 
@@ -188,7 +191,6 @@ UIViewControllerやUIViewなどにも付与されています。
 
 IntやStringなどのメタタイプ、Actor、Struct、enumなどはSendableな型です。
 
-SendableがあることでActorへ値を渡すときなどに、データ競合が起きないことをコンパイル時に保証できます。
 
 ## Async/Await
 
@@ -197,14 +199,13 @@ await（= suspend）することでスレッドをブロックせず他の処理
 
 また、suspend状態から戻った時に必ずしも以前と同じスレッドで処理が実行されるとは限りません。
 
-読み取り専用のコンピューティッドプロパティにおいても、async/awaitを利用可能
+読み取り専用のコンピューティッドプロパティにおいても、async/awaitを利用可能です。
 https://www.hackingwithswift.com/quick-start/concurrency/how-to-create-and-use-async-properties
 
 ## Unstructured Concurrency
 
 async/awaitだけでは逐次実行されるだけで並行処理は実現できません。
 Swiftにでは、Unstructured ConcurrencyやStructured Concurrencyを用いることで並行処理を実現できます。
-まずはUnstructured Concurrencyを見ていきます。
 
 ### Task.init vs Task.detached
 
@@ -216,8 +217,7 @@ Swiftにでは、Unstructured ConcurrencyやStructured Concurrencyを用いる�
 | Task          | 引き継ぐ            | 引き継ぐ             | 引き継ぐ             |
 | Task.detached | nil（未指定の場合） | なし（引き継がない） | なし（引き継がない） |
 
-（タスクのPriorityについてはhigh, medium, .lowがありますが、nilを設定するとmediumとなるようです。
-[swift - Default priority of Task.detached - Stack Overflow](https://stackoverflow.com/a/73513116/9015472)）
+（タスクのPriorityについてはhigh, medium, .lowがありますが、nilを設定するとmediumとなるようです。[swift - Default priority of Task.detached - Stack Overflow](https://stackoverflow.com/a/73513116/9015472)）
 
 > First off, `Task.detached` most of the time should not be used at all, because it does *not* propagate task priority, task-local values or the execution context of the caller. Not only that but a detached task is inherently not *structured* and thus may out-live its defining scope.
 >
@@ -246,7 +246,7 @@ actor Demo {
 ```
 
 `.detached`なタスクは親タスクから完全に独立したタスクとなり、構造化されたタスクではないので協調的にキャンセルが起こることもありません。
-[Explore Structured Concurrency in Swiftの](https://developer.apple.com/videos/play/wwdc2021/10134/)において利用例として、ネットワークから画像をダウンロードし、キャッシュする際に利用するケースが紹介されています。画像取得後にダウンロードタスクのキャンセルの影響を受けずに、キャッシュ処理を行いたいのでこのような利用が可能でしょう。
+[Explore Structured Concurrency in Swift](https://developer.apple.com/videos/play/wwdc2021/10134/)において利用例として、ネットワークから画像をダウンロードし、キャッシュする際に利用するケースが紹介されています。画像取得後にダウンロードタスクのキャンセルの影響を受けずに、キャッシュ処理を行いたいのでこのような利用が可能でしょう。
 
 ### Taskから結果を取得
 
@@ -333,7 +333,7 @@ Task {
 * （上述のように）for loopを用いて子タスクの完了を待つ
 * `next()`を用いる
   * 次の子タスクを待つ（もちろんtaskの完了順です）
-* ``waitForAll(`)`を用いる
+* `waitForAll()`を用いる
   * 全てが完了するまで待ち、且つ戻り値は破棄される
 
 ### キャンセル
@@ -369,6 +369,7 @@ group.addTask {
 ### async let
 
 複数のタスクを並列で実行する方法として`async let`もあります。
+タスクグループの作成との比較をすると以下のようになります。
 
 |                | 実行タスク数 | 結果の取得     | 直接のキャンセル | タスクの戻り値                                               |
 | -------------- | ------------ | -------------- | ---------------- | ------------------------------------------------------------ |
