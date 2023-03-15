@@ -151,7 +151,7 @@ UIViewControllerやUIViewなどにも付与されています。
 >   struct UIUpdating<Wrapped> {
 >     @MainActor var wrappedValue: Wrapped
 >   }
->     
+>       
 >   struct CounterView { // infers @MainActor from use of @UIUpdating
 >     @UIUpdating var intValue: Int = 0
 >   }
@@ -403,7 +403,47 @@ SwiftUIの`.task()`modifierを使用してタスクを実行できます。
 > id
 > The value to observe for changes. The value must conform to the [`Equatable`](https://developer.apple.com/documentation/Swift/Equatable) protocol.
 
-https://developer.apple.com/documentation/swiftui/view/task(id:priority:_:)
+[task(id:priority:_:) | Apple Developer Documentation](https://developer.apple.com/documentation/swiftui/view/task(id:priority:_:))
+
+また、`.task()`modifierは`body`で利用する場合はMainActor上で実行されますが、それ以外の場合は協調スレッドプールで処理が行われます。
+参考: [Where View.task gets its main-actor isolation from – Ole Begemann](https://oleb.net/2022/swiftui-task-mainactor/)
+
+例えば以下の例では、`subView`はMainActorなコンテキストを引き継がないため`@MainActor`や`await`を付与しないとエラーになります。
+
+```swift
+@MainActor
+func doWork() {
+    print("on MainActor")
+}
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            subView
+            Text("hi")
+                .task {
+                    doWork()
+                }
+        }
+    }
+
+    var subView: some View {
+        Text("sub view")
+            .task {
+                // エラー
+                // 1. expression is 'async' but is not marked with 'await
+                // 2. calls to global function 'doWork()' from outside of its actor context are implicitly asynchronous
+                doWork()
+            }
+    }
+}
+```
+
+`body`の定義は以下のように`@MainActor`が付与されており、`task`はそのコンテキストを引き継ぐので、`body`ではMainActorコンテキストでの実行となりエラーになりません。
+
+```swift
+    @ViewBuilder @MainActor var body: Self.Body { get }
+```
 
 ### Tips
 
