@@ -16,6 +16,8 @@ published: true
 
 なぜこれをつくったのか、どうやったのかを本記事ではご紹介します。
 
+ソースはこちら [yyokii/tech-digest-by-ai: Tech news digest created by AI](https://github.com/yyokii/tech-digest-by-ai)
+
 ## なぜつくったか
 
 NewsPicksをよく利用しているのですが、コメンテーターにAIがいても面白いのではとふと思い作ることにしました。
