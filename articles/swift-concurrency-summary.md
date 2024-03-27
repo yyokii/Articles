@@ -151,7 +151,7 @@ UIViewControllerやUIViewなどにも付与されています。
 >   struct UIUpdating<Wrapped> {
 >     @MainActor var wrappedValue: Wrapped
 >   }
->       
+>         
 >   struct CounterView { // infers @MainActor from use of @UIUpdating
 >     @UIUpdating var intValue: Int = 0
 >   }
@@ -159,7 +159,7 @@ UIViewControllerやUIViewなどにも付与されています。
 
 [引用: swift-evolution/0316-global-actors.md at main · apple/swift-evolution](https://github.com/apple/swift-evolution/blob/main/proposals/0316-global-actors.md)
 
-関数がすでにMainActorで実行されている場合、`await MainActor.run()`を使用すると、次の実行ループを待たずにすぐにコードが実行されますが、`Task { @MainActor in ~ `使用*すると、*次の実行ループを待つことになります。
+関数がすでにMainActorで実行されている場合、`await MainActor.run()`を使用すると、次の実行ループを待たずにすぐにコードが実行されますが、`Task { @MainActor in ~ `使用すると、次の実行ループを待つことになります。
 
 [参考: How to use @MainActor to run code on the main queue - a free Swift Concurrency by Example tutorial](https://www.hackingwithswift.com/quick-start/concurrency/how-to-use-mainactor-to-run-code-on-the-main-queue)
 
