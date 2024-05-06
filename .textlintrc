@@ -1,0 +1,11 @@
+{
+    "rules": {
+        "preset-smarthr": true,
+        "prh": {
+            "rulePaths": [
+                "dict/smarthr-prh-basic.yml",
+                "dict/smarthr-prh-tech-word.yml"
+            ]
+        }
+    }
+}
